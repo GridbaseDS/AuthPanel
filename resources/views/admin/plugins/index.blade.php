@@ -5,7 +5,7 @@
 @section('content')
 <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
     <a href="{{ route('plugins.create') }}" class="btn btn-primary">
-        + Add New Plugin
+        + Añadir Nuevo Plugin
     </a>
 </div>
 
@@ -13,11 +13,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Plugin Name</th>
-                <th>Slug Code</th>
-                <th>Type</th>
-                <th>Licenses Issued</th>
-                <th>Created At</th>
+                <th>Nombre del Plugin</th>
+                <th>Slug (Identificador)</th>
+                <th>Tipo</th>
+                <th>Licencias Emitidas</th>
+                <th>Creado el</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 32px;">No plugins registered yet.</td>
+                <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 32px;">No hay plugins registrados aún.</td>
             </tr>
             @endforelse
         </tbody>

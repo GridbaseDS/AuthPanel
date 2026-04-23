@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Gridbase Auth') }} - Admin</title>
+    <title>{{ config('app.name', 'Gridbase Auth') }} - Panel</title>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
@@ -13,23 +13,22 @@
         <aside class="sidebar">
             <div class="sidebar-logo">
                 <img src="https://gridbase.com.do/wp-content/uploads/2025/02/imagen_2026-03-16_154236217.png" alt="Gridbase Logo" style="height: 32px; width: auto; object-fit: contain;">
-                Gridbase
             </div>
             
             <nav class="sidebar-nav">
                 <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    Dashboard
+                    Panel de Control
                 </a>
                 <a href="{{ route('plugins.index') }}" class="nav-item {{ request()->routeIs('plugins.*') ? 'active' : '' }}">
                     Plugins
                 </a>
                 <a href="{{ route('licenses.index') }}" class="nav-item {{ request()->routeIs('licenses.*') ? 'active' : '' }}">
-                    Licenses
+                    Licencias
                 </a>
                 <form action="{{ route('logout') }}" method="POST" style="margin-top: auto;">
                     @csrf
                     <button type="submit" class="nav-item" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
-                        Logout
+                        Cerrar Sesión
                     </button>
                 </form>
             </nav>
@@ -40,7 +39,7 @@
             <header class="topbar">
                 <h2>@yield('header')</h2>
                 <div class="user-profile">
-                    {{ auth()->user()->name }}
+                    Gridbase Auth Verificator
                 </div>
             </header>
 

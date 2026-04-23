@@ -25,17 +25,17 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                    <label class="form-label">Email Address</label>
+                    <label class="form-label">Correo Electrónico</label>
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autofocus>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Password</label>
+                    <label class="form-label">Contraseña</label>
                     <input type="password" name="password" class="form-control" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; height: 48px; margin-top: 16px;">
-                    Sign In
+                    Ingresar
                 </button>
             </form>
         </div>
