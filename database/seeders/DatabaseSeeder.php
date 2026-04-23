@@ -15,10 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@gridbase.com.do'],
+            [
+                'name' => 'Gridbase Admin',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            ]
+        );
 
         $this->call(PluginSeeder::class);
     }
