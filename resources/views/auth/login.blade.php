@@ -10,8 +10,11 @@
 
     <div class="login-wrapper">
         <div class="glass-panel login-box">
-            <h1 class="login-title">Welcome Back</h1>
-            <p class="login-subtitle">Sign in to manage Gridbase plugins</p>
+            <div style="text-align: center; margin-bottom: 24px;">
+                <img src="https://gridbase.com.do/wp-content/uploads/2025/02/imagen_2026-03-16_154236217.png" alt="Gridbase Logo" style="height: 48px; width: auto; object-fit: contain;">
+            </div>
+            <h1 class="login-title">Bienvenido a Gridbase</h1>
+            <p class="login-subtitle">Inicia sesión para gestionar tus plugins</p>
 
             @if($errors->any())
                 <div style="color: var(--danger); font-size: 14px; margin-bottom: 16px; text-align: center;">

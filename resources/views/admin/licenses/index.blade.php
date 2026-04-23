@@ -9,11 +9,11 @@
         <thead>
             <tr>
                 <th>Plugin</th>
-                <th>Domain Used</th>
-                <th>License Key</th>
-                <th>Status</th>
-                <th>Registered At</th>
-                <th>Actions</th>
+                <th>Dominio de Instalación</th>
+                <th>Clave de Licencia</th>
+                <th>Estado</th>
+                <th>Fecha de Registro</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>

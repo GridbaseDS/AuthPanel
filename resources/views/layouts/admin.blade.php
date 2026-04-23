@@ -12,12 +12,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="3" y="3" width="7" height="7" rx="1" fill="#4F46E5"/>
-                    <rect x="14" y="3" width="7" height="7" rx="1" fill="#4F46E5"/>
-                    <rect x="3" y="14" width="7" height="7" rx="1" fill="#4F46E5"/>
-                    <rect x="14" y="14" width="7" height="7" rx="1" fill="#10B981"/>
-                </svg>
+                <img src="https://gridbase.com.do/wp-content/uploads/2025/02/imagen_2026-03-16_154236217.png" alt="Gridbase Logo" style="height: 32px; width: auto; object-fit: contain;">
                 Gridbase
             </div>
             
