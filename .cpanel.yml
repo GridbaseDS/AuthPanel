@@ -1,0 +1,12 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/gridbase/licencias.gridbase.com
+    - /bin/cp -R * $DEPLOYPATH
+    # Copy dotfiles manually because * ignores them
+    - /bin/cp .env.example $DEPLOYPATH
+    - cd $DEPLOYPATH && composer install --optimize-autoloader --no-dev
+    - cd $DEPLOYPATH && php artisan migrate --force
+    - cd $DEPLOYPATH && php artisan config:cache
+    - cd $DEPLOYPATH && php artisan route:cache
+    - cd $DEPLOYPATH && php artisan view:cache
