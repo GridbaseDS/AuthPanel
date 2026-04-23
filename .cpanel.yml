@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/gridbase/licencias.gridbase.com
+    - export DEPLOYPATH=/home/gridbase/auth.gridbase.com.do
     - /bin/cp -R * $DEPLOYPATH
     - /bin/cp .env.example $DEPLOYPATH
