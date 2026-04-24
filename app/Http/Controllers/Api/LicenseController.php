@@ -24,6 +24,15 @@ class LicenseController extends Controller
             return response()->json(['success' => false, 'message' => 'Plugin not found', 'code' => 'plugin_not_found'], 404);
         }
 
+        // Premium plugins cannot be auto-registered — they require a manual key
+        if ($plugin->type === 'premium') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Este es un plugin Premium. Requiere una llave de licencia para activarse.',
+                'code' => 'premium_requires_key'
+            ], 403);
+        }
+
         // Generate a new license key
         $licenseKey = (string) Str::uuid();
 
