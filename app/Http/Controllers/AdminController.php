@@ -49,6 +49,30 @@ class AdminController extends Controller
         return view('admin.licenses.index', compact('licenses'));
     }
 
+    public function createLicense()
+    {
+        $plugins = Plugin::where('type', 'premium')->get();
+        return view('admin.licenses.create', compact('plugins'));
+    }
+
+    public function storeLicense(Request $request)
+    {
+        $request->validate([
+            'plugin_id' => 'required|exists:plugins,id',
+        ]);
+
+        $custom_key = 'GB-' . strtoupper(\Illuminate\Support\Str::random(4)) . '-' . strtoupper(\Illuminate\Support\Str::random(4)) . '-' . strtoupper(\Illuminate\Support\Str::random(4));
+
+        License::create([
+            'plugin_id' => $request->plugin_id,
+            'domain' => null,
+            'license_key' => $custom_key,
+            'status' => 'unused',
+        ]);
+
+        return redirect()->route('licenses.index')->with('success', 'Llave Premium Manual generada correctamente: ' . $custom_key);
+    }
+
     public function revokeLicense($id)
     {
         $license = License::findOrFail($id);

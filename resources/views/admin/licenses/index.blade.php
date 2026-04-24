@@ -4,6 +4,12 @@
 
 @section('content')
 
+<div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+    <a href="{{ route('licenses.create') }}" class="btn btn-primary" style="font-weight: 600;">
+        + Generar Llave de Pago
+    </a>
+</div>
+
 <div class="glass-panel table-container">
     <table class="table">
         <thead>

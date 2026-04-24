@@ -73,20 +73,26 @@ class LicenseController extends Controller
             })->first();
 
         if (!$license) {
-            return response()->json(['success' => false, 'message' => 'Invalid license key', 'code' => 'invalid_key'], 404);
+            return response()->json(['success' => false, 'message' => 'Clave de licencia inválida para este plugin.', 'code' => 'invalid_key'], 404);
         }
 
-        // If it was bound to another domain, depending on policy, we could reject or auto-bind
-        $license->update([
-            'domain' => $request->domain,
-            'status' => 'active',
-            'email' => $request->email ?? $license->email,
-        ]);
+        if ($license->status === 'active' && $license->domain !== $request->domain) {
+            return response()->json(['success' => false, 'message' => 'Esta licencia ya está vinculada a otro dominio.', 'code' => 'key_in_use'], 403);
+        }
+
+        if ($license->status !== 'active' || $license->domain !== $request->domain) {
+            $license->update([
+                'domain' => $request->domain,
+                'status' => 'active',
+                'email' => $request->email ?? $license->email,
+            ]);
+        }
 
         return response()->json([
             'success' => true,
             'data' => [
                 'status' => 'active',
+                'license_key' => $license->license_key
             ]
         ]);
     }

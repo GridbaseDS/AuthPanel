@@ -20,5 +20,7 @@ Route::middleware('auth')->group(function () {
     
     // Licenses
     Route::get('/licenses', [\App\Http\Controllers\AdminController::class, 'licenses'])->name('licenses.index');
+    Route::get('/licenses/create', [\App\Http\Controllers\AdminController::class, 'createLicense'])->name('licenses.create');
+    Route::post('/licenses', [\App\Http\Controllers\AdminController::class, 'storeLicense'])->name('licenses.store');
     Route::post('/licenses/{id}/revoke', [\App\Http\Controllers\AdminController::class, 'revokeLicense'])->name('licenses.revoke');
 });
