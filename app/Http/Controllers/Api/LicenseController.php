@@ -135,4 +135,46 @@ class LicenseController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function renderUi(Request $request)
+    {
+        $request->validate([
+            'plugin_slug' => 'required|string',
+            'domain' => 'nullable|string',
+            'license_key' => 'nullable|string',
+        ]);
+
+        $plugin = Plugin::where('slug', $request->plugin_slug)->first();
+
+        if (!$plugin) {
+            $html = view('api.ui.error')->render();
+            return response()->json(['success' => false, 'html' => $html]);
+        }
+
+        // Check if there's an active license for this domain
+        $license = null;
+        if ($request->license_key && $request->domain) {
+            $license = License::where('license_key', $request->license_key)
+                ->where('domain', $request->domain)
+                ->where('plugin_id', $plugin->id)
+                ->where('status', 'active')
+                ->first();
+        }
+
+        if ($license) {
+            // Render Active layout
+            $masked_key = str_repeat('*', max(0, strlen($license->license_key) - 4)) . substr($license->license_key, -4);
+            $html = view('api.ui.active', compact('masked_key'))->render();
+            return response()->json(['success' => true, 'status' => 'active', 'html' => $html]);
+        }
+
+        // Render Inactive layout based on plugin type
+        if ($plugin->type === 'premium') {
+            $html = view('api.ui.premium')->render();
+        } else {
+            $html = view('api.ui.free')->render();
+        }
+
+        return response()->json(['success' => true, 'status' => 'inactive', 'html' => $html]);
+    }
 }
