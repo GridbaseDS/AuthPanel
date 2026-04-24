@@ -40,7 +40,27 @@ class AdminController extends Controller
         ]);
 
         Plugin::create($request->all());
-        return redirect()->route('plugins.index')->with('success', 'Plugin created successfully.');
+        return redirect()->route('plugins.index')->with('success', 'Plugin creado exitosamente.');
+    }
+
+    public function editPlugin($id)
+    {
+        $plugin = Plugin::findOrFail($id);
+        return view('admin.plugins.edit', compact('plugin'));
+    }
+
+    public function updatePlugin(Request $request, $id)
+    {
+        $plugin = Plugin::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:plugins,slug,' . $plugin->id,
+            'type' => 'required|in:free,premium',
+        ]);
+
+        $plugin->update($request->all());
+        return redirect()->route('plugins.index')->with('success', 'Plugin actualizado exitosamente.');
     }
 
     public function licenses()

@@ -18,6 +18,7 @@
                 <th>Tipo</th>
                 <th>Licencias Emitidas</th>
                 <th>Creado el</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,9 @@
                 </td>
                 <td>{{ $plugin->licenses_count }}</td>
                 <td style="color: var(--text-muted);">{{ $plugin->created_at->format('M d, Y') }}</td>
+                <td>
+                    <a href="{{ route('plugins.edit', $plugin->id) }}" class="btn badge-primary" style="padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none;">Editar</a>
+                </td>
             </tr>
             @empty
             <tr>
